@@ -108,5 +108,7 @@ if make:
         # Convert markdown to html
         show_info(info, "Creating html...")
         markdown2marp(fname)
+        info.info("Presentation has been created!")
+        info.empty()
 
 
