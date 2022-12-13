@@ -52,5 +52,5 @@ def markdown2marp(file):
     # Open HTML in Browser
     file = file.split(".")[0] # remove .md
     proc = subprocess.run([marp_it], shell=True, stdout=subprocess.PIPE)
-    subprocess.Popen(['open', f'{file}.html'])
+    #subprocess.Popen(['open', f'{file}.html'])
     return proc

@@ -105,9 +105,8 @@ if make:
         deck2markdown(deck, fname)  
 
 
-        st.markdown(deck)
         # Convert markdown to html
-        #show_info(info, "Creating html...")
-        #markdown2marp(fname)
+        show_info(info, "Creating html...")
+        markdown2marp(fname)
 
 
