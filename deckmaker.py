@@ -41,7 +41,7 @@ def make_deck(slide_info: dict, instructions, **GPT_OPTIONS) -> str:
 
 
 def deck2markdown(deck: str, fname="deck.md") -> None:
-    with open("deck.md", "w") as f:
+    with open(fname, "w") as f:
             f.write(deck)
 
 def markdown2marp(file):
@@ -52,5 +52,5 @@ def markdown2marp(file):
     # Open HTML in Browser
     file = file.split(".")[0] # remove .md
     proc = subprocess.run([marp_it], shell=True, stdout=subprocess.PIPE)
-    #subprocess.Popen(['open', f'{file}.html'])
+    subprocess.Popen(['open', f'{file}.html'])
     return proc
