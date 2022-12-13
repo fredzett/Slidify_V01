@@ -15,8 +15,14 @@ footer: by ChatGPT
 ## Pretty cool, huh?
     
 ---
-## Lineare Regression 
+## Formula 
     
 
-Linear Regression ist ein wichtiges Werkzeug in der Marketing-Analyse, da es eine schnelle und effiziente Möglichkeit bietet, die Beziehung zwischen verschiedenen Variablen zu untersuchen. Es kann verwendet werden, um vorherzusagen, wie sich Änderungen in einer Variable auf eine andere auswirken. Dadurch können Unternehmen ihre Marketingstrategien anpassen und verbessern, um bessere Ergebnisse zu erzielen. 📊
+K-Means Clustering ist ein unsupervised Machine Learning Algorithmus, der verwendet wird, um Daten in Gruppen (Cluster) zu klassifizieren. Der Algorithmus funktioniert, indem er die Datenpunkte in K Cluster aufteilt und jedem Punkt eine Clusterzugehörigkeit zuweist.
+
+Die mathematische Formel für K-Means Clustering lautet:
+
+$$J(C_k) = \sum_{i=1}^K \sum_{x \in C_i} ||x - \mu_i||^2$$
+
+wobei $C_k$ die Menge der K Cluster ist, $\mu_i$ der Mittelwert des i-ten Clusters ist und $||x - \mu_i||^2$ die Quadratsumme der Abweichung von x zu $\mu_i$ ist.
     

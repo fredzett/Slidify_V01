@@ -108,7 +108,11 @@ if make:
         # Convert markdown to html
         show_info(info, "Creating html...")
         markdown2marp(fname)
-        info.info("Presentation has been created!")
+        info.success("Presentation has been created!")
+        sleep(2)
         info.empty()
 
-
+        #st.download_button("Download deck", deck, file_name="deck.html")
+        import streamlit.components.v1 as components
+        p = open("deck.html")
+        components.html(p.read(), height=800, width=800)
