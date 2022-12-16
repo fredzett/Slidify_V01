@@ -1,9 +1,10 @@
 import streamlit as st
-from deckmaker import make_deck, deck2markdown, markdown2marp
+from deckmaker import make_deck, deck2markdown, markdown2marp, make_deck_quarto, markdown2reveal, deck2qmd
 from help import GPT_INSTRUCTION, INFO_MODEL
 from time import sleep
 
-
+with open("styles.css") as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 deck = "Nothing"
 
@@ -36,29 +37,46 @@ if "counter" not in st.session_state:
 ###################### SIDEBAR
 st.sidebar.markdown("__Configuration__")
 model = st.sidebar.selectbox(label="Model", options=["GPT-3", "ChatGPT"], index=0,help=INFO_MODEL)
-with st.sidebar.expander("Instructions"):
-    st.text("Test")
 
-instructions = st.sidebar.text_area("Instructions", value=GPT_INSTRUCTION)
-if model == "GPT-3":
-    llm = st.sidebar.selectbox(label="Language Model", options=["davinci", "curie", "babbage", "ada"])
-    temperature = st.sidebar.slider(label="Temperature", min_value=0.0, max_value=1.0, value=0.5, step=0.1)
-    max_tokens = st.sidebar.slider(label="Max tokens", min_value=50, max_value=1000, value=500, step=10)
-    top_p = st.sidebar.slider(label="Top p", min_value=0.0, max_value=1.0, value=.5, step=0.1)
-    frequency_penalty = st.sidebar.slider(label="Frequency penalty", min_value=0.0, max_value=2.0, value=0.3, step=0.1)
-    presence_penalty = st.sidebar.slider(label="Presence penalty", min_value=0.0, max_value=2.0, value=0.5, step=0.1)
+with st.sidebar.expander("Model options"):
+    if model == "GPT-3":
+        llm = st.selectbox(label="Language Model", options=["davinci", "curie", "babbage", "ada"])
+        temperature = st.slider(label="Temperature", min_value=0.0, max_value=1.0, value=0.5, step=0.1)
+        max_tokens = st.slider(label="Max tokens", min_value=50, max_value=1000, value=500, step=10)
+        top_p = st.slider(label="Top p", min_value=0.0, max_value=1.0, value=.5, step=0.1)
+        frequency_penalty = st.slider(label="Frequency penalty", min_value=0.0, max_value=2.0, value=0.3, step=0.1)
+        presence_penalty = st.slider(label="Presence penalty", min_value=0.0, max_value=2.0, value=0.5, step=0.1)
 
-    GPT_OPTIONS = {model: llm , "temperature": temperature, "max_tokens": max_tokens, 
-                "top_p": top_p, "frequency_penalty": frequency_penalty, "presence_penalty": presence_penalty}
+        GPT_OPTIONS = {model: llm , "temperature": temperature, "max_tokens": max_tokens, 
+                    "top_p": top_p, "frequency_penalty": frequency_penalty, "presence_penalty": presence_penalty}
 
-else: 
-    GPT_OPTIONS = {}
+    else:
+        GPT_OPTIONS = {}
+    instructions = st.text_area("Instructions", height=140, value=GPT_INSTRUCTION)
+
+lang = st.sidebar.selectbox(label="Language of presentation", options=["German", "English","Turkish", "Spanish"], index=0)
+instructions = instructions + " Answer in " + lang + "!"
+
+#instructions += f"\n Answer in {lang} "
+#if model == "GPT-3":
+#    llm = st.sidebar.selectbox(label="Language Model", options=["davinci", "curie", "babbage", "ada"])
+#    temperature = st.sidebar.slider(label="Temperature", min_value=0.0, max_value=1.0, value=0.5, step=0.1)
+#    max_tokens = st.sidebar.slider(label="Max tokens", min_value=50, max_value=1000, value=500, step=10)
+#    top_p = st.sidebar.slider(label="Top p", min_value=0.0, max_value=1.0, value=.5, step=0.1)
+#    frequency_penalty = st.sidebar.slider(label="Frequency penalty", min_value=0.0, max_value=2.0, value=0.3, step=0.1)
+#    presence_penalty = st.sidebar.slider(label="Presence penalty", min_value=0.0, max_value=2.0, value=0.5, step=0.1)
+#
+#    GPT_OPTIONS = {model: llm , "temperature": temperature, "max_tokens": max_tokens, 
+#                "top_p": top_p, "frequency_penalty": frequency_penalty, "presence_penalty": presence_penalty}
+#
+#else: 
+#    GPT_OPTIONS = {}
 
 ####################################################
 ###################### MAIN
 warning = st.empty()
-st.markdown("# Slide Deck Creator")
-st.markdown("## Add a slide")
+st.markdown("# The Mechanical McKinsey 🤖")
+st.markdown("Create a slide deck within minutes! 🚀")
 
 with st.form(key="slide_form"):
     slide_header = st.text_input(label="Header", value="", placeholder="The t-Test    ")
@@ -92,27 +110,29 @@ if make:
     if slides == []:
         pass
     else:
-        ### Get GPT input per prompt/slide
-        slide_idx = [int(s.split("|")[0])-1 for s in slides]
-        slide_info = {k: v for k, v in st.session_state.slide_info.items() if k in slide_idx}
-        ## Make deck incl. input from GPT
-        show_info(info, "Making deck...")
-        deck = make_deck(slide_info, instructions, **GPT_OPTIONS)
+        if model == "GPT-3":
+            ### Get GPT input per prompt/slide
+            slide_idx = [int(s.split("|")[0])-1 for s in slides]
+            slide_info = {k: v for k, v in st.session_state.slide_info.items() if k in slide_idx}
+            ## Make deck incl. input from GPT
+            show_info(info, "Making deck...")
+            #deck = make_deck(slide_info, instructions, **GPT_OPTIONS)
+            deck = make_deck_quarto(slide_info, instructions, **GPT_OPTIONS)
+            # Write deck to markdown
+            show_info(info, "Writing markdown...")
+            fname = "deck.qmd"
+            #deck2markdown(deck, fname)  
+            deck2qmd(deck, fname)
 
-        # Write deck to markdown
-        show_info(info, "Writing markdown...")
-        fname = "deck.md"
-        deck2markdown(deck, fname)  
+            # Convert markdown to html
+            show_info(info, "Creating html...")
+            #markdown2marp(fname)
+            markdown2reveal(fname)
+            info.success("Presentation has been created!")
+            sleep(1)
+            info.empty()
 
-
-        # Convert markdown to html
-        show_info(info, "Creating html...")
-        markdown2marp(fname)
-        info.success("Presentation has been created!")
-        sleep(2)
-        info.empty()
-
-        #st.download_button("Download deck", deck, file_name="deck.html")
-        import streamlit.components.v1 as components
-        p = open("deck.html")
-        components.html(p.read(), height=800, width=800)
+        else:
+            show_warning(warning, "ChatGPT is not implemented yet")
+            sleep(1)
+            warning.empty()

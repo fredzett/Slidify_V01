@@ -1,0 +1,388 @@
+/*-- scss:defaults --*/
+
+// Font-family!
+$font-family: 'Avenir Next', 'Alegreya Sans', 'Droid Serif', 'Palatino Linotype', 'Book Antiqua', Palatino, 'Microsoft YaHei', 'Songti SC', sans-serif !default;
+$font-size-normal: 18px; // 20px seems good
+$font-size-section-title: 18px ; // 14px seems good
+$font-size-section-action-title: 26px ; // 26px seems good
+$font-size-section: 36px ; 
+$font-size-title: 50px ; // 40px seems good
+
+
+
+
+h1, h2, h3, h4, p, del, th, td,li, caption, div.slide-number, summary {
+    font-family: $font-family !important;
+    
+  }
+  
+/// General font-size
+p, del, th, td, li, caption, div.slide-number, summary {
+  font-size: $font-size-normal;
+
+}
+
+  // Colors
+$bg-color: white;
+$font-color: black;
+$highlight-color:#003d5b;
+$lowlight-color: #30638e;// 
+$code-color: #d1495b;
+$link-color: black; // #00798c;
+$highlight-color2: #edae49;
+$grey: rgb(245, 245, 245);
+//$test: #6c99bb;
+//$bg: #2e2e2e;
+//$cmts: #797979;
+
+
+  
+  
+
+//////////////////////////////////////////////////////
+/// format titel slide
+h1.title {
+  font-size: $font-size-title !important;
+  font-weight: bolder;
+	color:$highlight-color !important;
+	text-align: left;
+	margin-left: 0px;
+	padding-top: 0px;
+  border-bottom: $highlight-color 4px solid;
+}
+
+p.subtitle {
+  font-size: $font-size-section-action-title !important;
+  font-weight: normal;
+  color:$highlight-color !important;
+  text-align: left;
+  margin-left: 0px;
+  padding-top: 0px;
+
+}
+.reveal .quarto-title-block .quarto-title-authors  {
+  justify-content: left !important;
+  
+  .quarto-title-author-name {
+
+    font-family: $font-family;
+    font-size: $font-size-normal;
+    color:$highlight-color !important;
+    padding-top: 50px;
+  }
+  
+  .quarto-title-author {
+    
+    padding-left: 0px !important;
+    
+  }
+}
+
+p.date {
+  font-size: $font-size-section-action-title;
+  color:$highlight-color !important;
+}
+
+a[href$='#/title-slide'] {
+  display: none;
+}
+
+
+
+
+//////////////////////////////
+/// TOC
+
+section#TOC {
+
+ 
+  a {
+    color: $highlight-color !important;
+    font-size: $font-size-section-action-title !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+  }
+
+  a:hover {
+    color: $code-color !important;
+  }
+
+  span::before {
+    content: "("; 
+  }
+
+  span::after {
+    content: ")"; 
+  }
+
+  ul {
+    margin-top: 40px;
+    list-style-type: none;
+  }
+
+    li {
+      margin-bottom: 50px;
+      padding-left: 0px;
+      //font-size:26px ;
+      font-weight: normal;
+      color:$highlight-color !important;
+      text-align: left;
+      margin-left: -20px;
+      padding-top: 0px;
+
+    }
+
+}
+
+
+//////////////////////
+///  Format chapter (section) slides
+h1 {
+  font-size: $font-size-section !important;
+  font-weight: bolder;
+  color:$bg-color !important;
+  text-align: left;
+  margin-left: 0px;
+  padding-top: 0px;
+  border-bottom: $bg-color 4px solid;
+
+  span {
+    //color: $highlight-color2 !important;
+  }
+
+  span::before{
+    content: "(";
+  }
+
+  span::after{
+    content: ")";
+  }
+}
+
+.level1 {
+  background-color: $highlight-color !important;
+}
+
+
+
+/// Format regular slides
+// Section title on top
+h3 {
+  font-size: $font-size-section-title !important;
+  color: $lowlight-color !important;
+  margin-bottom: 0px;
+
+// CHECK!!!
+  /* Set the position of the h3 element to relative */
+  position: relative;
+  /* Set the top property to a negative value */
+  top: -50px;
+  /* Other h3 styles... */
+}
+
+// Action title
+h2, h2#toc-title{
+  font-size: $font-size-section-action-title !important;
+  font-weight: bold !important;
+  color:  $highlight-color !important;
+  margin-top: 0px;
+  margin-bottom: 40px !important;
+  border-bottom: 4px solid $highlight-color !important;
+  position: relative;
+  top: 50px;
+}
+
+
+
+// Title for columns (e.g.
+h4 {
+  color: $highlight-color !important;
+  font-size: $font-size-normal !important;
+  font-weight: bolder !important;
+  border-bottom: $highlight-color 1px solid !important ;
+}
+
+p {
+  text-align: justify !important;
+  margin-bottom: 20px !important;
+}
+
+strong {
+  color: $highlight-color !important;
+}
+
+a {
+  color: $link-color !important;
+  font-weight: bolder !important;
+  font-style: italic !important;
+}
+
+del {
+  color: $bg-color !important;
+  background-color: $highlight-color !important;
+  text-decoration: none;
+  font-size: inherit !important;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+code {
+  color: $code-color !important;
+  font-family: 'Dank Mono', monospace !important;
+  //background-color: $grey !important;
+}
+
+.sourceCode, .sourceCode.cell-code,  {
+    text-align: left;
+    width: 100%;
+    font-family: 'Dank Mono', monospace !important;
+    //font-size: $font-size-normal !important;
+    color: $highlight-color !important;
+    //padding: 0.5em;
+    //background-color: #f2f1f1 !important;
+    overflow-y: scroll;
+    border-left:  0px solid !important;
+    border-bottom: $highlight-color 1px solid !important;
+    border-right: 0px !important;
+    border-top: $highlight-color 1px solid !important;
+    border-radius: 0px !important;
+
+  }
+
+code.sourceCode.python {
+  background-color: $grey !important;
+  font-size: $font-size-normal !important;
+  border-bottom: 0px !important;
+  border-top: 0px !important;
+
+  a {
+    font-style: normal !important;
+    margin-left: 0px !important;
+  }
+
+  a::before {
+    content: " ";
+    margin-left: 0px !important;
+  }
+  span:hover {
+    //color: green !important;
+    //font-size: 24px !important;
+  }
+}
+
+section {
+  ul, ol {
+    margin-left: 20px !important;
+    margin-bottom: 20px !important;
+
+    ::marker {
+      color:$highlight-color !important;
+    }
+  }
+}
+
+table, th, td {
+  padding-left: 0px !important;
+  margin-left: 0px !important;
+}
+
+thead {
+  color: $highlight-color !important;
+  font-weight: bolder !important;
+  font-size: $font-size-normal !important;
+  border-bottom: $highlight-color 2px solid !important;
+}
+
+.panel-tabset [role=tab][aria-selected=true] {
+  background-color: $highlight-color !important;
+  color: $bg-color !important;
+
+  
+}
+
+ul.panel-tabset-tabby {
+  margin-left: 0px !important;
+
+  a {
+
+    font-style: normal !important;
+  }
+}
+
+//section {
+//  ul.panel-tabset-tabby  {
+//    margin-left: 0px !important;
+//    //border-bottom: $highlight-color 1px solid !important;
+//
+//    a  {
+//      font-size: $font-size-normal !important;
+//      font-style: normal !important;
+//      color: $grey !important;
+//      border: 0px !important;
+//      background-color: $highlight-color;
+//    }
+//
+//  }
+//}
+
+caption, .table-caption {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem !important;
+    text-align: center;
+}
+
+.slide-number {
+  a {
+    font-style: normal !important;
+    font-size: smaller !important;
+    color: $font-color !important;
+    font-weight: normal !important;
+  }
+}
+
+section {
+  .math {
+    //color: $highlight-color !important;
+  }
+}
+
+
+//// Fußnoten als letzte Seite
+///   
+/// 
+
+section#footnotes {
+  
+
+  ol {
+    margin-top: 40px;
+    list-style-type: none;
+  }
+
+    
+  }
+
+
+section {
+  blockquote {
+    padding: 2px !important;
+    padding-left: 20px !important;
+    border-left: 3px solid $highlight-color !important;
+    background-color: $grey !important;
+    margin: 0px !important;
+  }
+}
+
+////////////////////////////////
+/// Slide Menu
+/// 
+span.slide-menu-item-title, span.slide-menu-toolbar-label   {
+    
+        font-size: smaller !important;
+
+}
+
+
+///////////// EXPERIMENTAL
+/// 
+

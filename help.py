@@ -1,5 +1,5 @@
-GPT_INSTRUCTION = """Format everything in markdown and be 
-concise in your wording. Use emojis where appropriate. Answer in German"""
+# Additional instructions for the GPT model. Language instruction will be added via selectbox.
+GPT_INSTRUCTION = """Format everything in markdown and highlight important arguments or words."""
 
 INFO_MODEL = """Which model should you choose?
 

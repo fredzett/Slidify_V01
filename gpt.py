@@ -1,19 +1,24 @@
 import openai
 import streamlit as st
+import os
+import platform
 
-# MAKE SAFE VIA STREAMLIT CONFIG
-openai.api_key = st.secrets["api_key"]
+# QUICK FIX TO SWITCH BETWEEN LOCAL AND REMOTE
+processor = platform.processor()
+openai.api_key = os.getenv("OPENAI_API_KEY") if processor else st.secrets["api_key"]
+
+#openai.api_key = os.getenv("OPENAI_API_KEY")#st.secrets["api_key"]
 
 llm2model = {"davinci": "text-davinci-003", 
             "curie": "text-curie-001", 
-            "babbage": "text-babbage-001", 
+            "babbage": "text-babbage-001",  
             "ada": "text-ada-001"}
 
-def _get_GPT3_prompt(prompt, instructions, **kwargs):
+def _get_GPT3_prompt(prompt, instructions, **GPT_OPTIONS):
     """Returns a prompt for GPT-3"""
-    llm, temperature, max_tokens, top_p, frequency_penalty, presence_penalty = kwargs.values()
+    llm, temperature, max_tokens, top_p, frequency_penalty, presence_penalty = GPT_OPTIONS.values()
     model = llm2model[llm]
-    inpt = prompt + "\n" + instructions + "\n"
+    inpt = instructions + "\n" + prompt + "\n"
     answer =  openai.Completion.create(
             model=model,
             prompt=inpt, 

@@ -1,0 +1,46 @@
+
+.css-5uatcg.edgvbvh10 {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+/*.css-1p05t8e.epcbefy1 {
+/*    border: none;
+/*    padding: 0px;
+/*    margin: 0px;
+/*    
+/*}
+
+/* Path: styles.css */
+.st-ck {
+    color: #ececf1;
+}
+
+
+[data-testid="stForm"]  {
+    /* styles go here */
+    border: none;
+    padding: 0px;
+    margin: 0px
+  }
+
+[data-testid="stForm"] input {
+    /* styles go here */
+     background-color:#444654 ;
+  }
+
+  section[tabindex="0"]  {
+    background-color: #343541;
+  }
+
+  [data-testid="stHeader"] {
+    background-color: #343541;
+  }
