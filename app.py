@@ -6,6 +6,8 @@ import streamlit as st
 from deckmaker import deck2qmd, make_deck_quarto, markdown2reveal
 from help import GPT_INSTRUCTION, INFO_MODEL
 
+st.set_page_config(page_title="The Mechanical McKinsey", page_icon="🤖", initial_sidebar_state="collapsed")
+
 def main_page():
     ##### Incorporate "styles.css" into the app
     with open("styles.css") as f:
@@ -71,13 +73,14 @@ def main_page():
     #st.markdown("# The Mechanical McKinsey 🤖")
     #st.markdown("Create a slide deck within minutes! 🚀")
 
-    with st.form(key="slide_form"):
+    with st.form(key="slide_form", clear_on_submit=True):
         slide_header = st.text_input(label="Slide titel", value="", placeholder="The political system in Germany")
         prompt = st.text_area(label="Content of the slide", value="", height=300, placeholder="Explain the political system in Germany in three bullet points!")
         add_slide = st.form_submit_button("Add slide to deck")  
         info = st.empty()
 
     if add_slide:
+
         info.info("Adding slide to deck...")
         sleep(0.2)
         info.empty()
@@ -87,7 +90,7 @@ def main_page():
 
     with st.expander("Slides in deck", expanded=False):
         all_header = [f"{i + 1} | {h}" for i, h in zip(st.session_state.slide_info.keys(), unpack_header(st.session_state.slide_info))]
-        slides = st.multiselect(label="Slides in deck", label_visibility="hidden" ,options=all_header, default=all_header)
+        slides = st.multiselect(label="Slides in deck", label_visibility="hidden" ,options=all_header, default=all_header, )
         delete = st.button("Remove selected slides from deck")
         if delete: 
             if slides == []:
