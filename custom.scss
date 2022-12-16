@@ -169,7 +169,7 @@ h1 {
 // Section title on top
 h3 {
   font-size: $font-size-section-title !important;
-  color: $lowlight-color !important;
+  color: $bg-color !important; /* Changed to  background-color given not Sections in the TOC */
   margin-bottom: 0px;
 
 // CHECK!!!
