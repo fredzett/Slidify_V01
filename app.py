@@ -139,6 +139,13 @@ def main_page():
                 info.success("Presentation has been created!")
                 sleep(1)
                 info.empty()
+                with open("deck.html", 'rb') as f:
+                    st.download_button(              #second button
+                        label="Download presentation",
+                        data=f,
+                        file_name="deck.html",
+                        mime='application/xhtml+xml',
+                    )
 
             else:
                 show_warning(warning, "ChatGPT is not implemented yet")

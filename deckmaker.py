@@ -58,9 +58,9 @@ def markdown2marp(file):
     proc = subprocess.run([marp_it], shell=True, stdout=subprocess.PIPE)
     st.write("NPX done!")
 
-    filename = 'file:///'+os.getcwd()+'/' + 'deck.html'
-    webbrowser.open_new_tab(filename)
-    st.write("Opening Browser done!")
+    #filename = 'file:///'+os.getcwd()+'/' + 'deck.html'
+    #webbrowser.open_new_tab(filename)
+    #st.write("Opening Browser done!")
     #subprocess.Popen(['open', f'{file}.html'])
     #return proc
 
