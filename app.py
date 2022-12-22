@@ -3,7 +3,7 @@ import os
 
 import streamlit as st
 
-from deckmaker import deck2qmd, make_deck_quarto, markdown2reveal
+from deckmaker import make_deck, deck2markdown, markdown2marp#deck2qmd, make_deck_quarto, markdown2reveal
 from help import GPT_INSTRUCTION, INFO_MODEL
 
 st.set_page_config(page_title="The Mechanical McKinsey", page_icon="🤖", initial_sidebar_state="collapsed")
@@ -126,16 +126,16 @@ def main_page():
                 slide_info = {k: v for k, v in st.session_state.slide_info.items() if k in slide_idx}
                 ## Make deck incl. input from GPT
                 show_info(info, "Making deck...")
-                deck = make_deck_quarto(slide_info, instructions, execute,**GPT_OPTIONS) # Includes progress bar
+                deck = make_deck(slide_info, instructions, **GPT_OPTIONS)#make_deck_quarto(slide_info, instructions, execute,**GPT_OPTIONS) # Includes progress bar
                 
                 ## Write deck to markdown
                 show_info(info, "Writing markdown...")
-                fname = "deck.qmd"
-                deck2qmd(deck, fname)
+                fname = "deck.md"#"deck.qmd"
+                deck2markdown(deck, fname)#deck2qmd(deck, fname)
 
                 ## Convert markdown to html
                 show_info(info, "Creating html...")
-                markdown2reveal(fname)
+                markdown2marp(fname)#markdown2reveal(fname)
                 info.success("Presentation has been created!")
                 sleep(1)
                 info.empty()
