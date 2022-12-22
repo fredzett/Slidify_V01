@@ -2,6 +2,8 @@ from gpt import _get_GPT3_prompt
 import subprocess
 import sys
 import streamlit as st
+import webbrowser
+import os
 
 def _make_yaml(footer="by ChatGPT"):
     return f"""---
@@ -54,9 +56,13 @@ def markdown2marp(file):
     # Open HTML in Browser
     file = file.split(".")[0] # remove .md
     proc = subprocess.run([marp_it], shell=True, stdout=subprocess.PIPE)
-    st.write("Done!")
-    subprocess.Popen(['open', f'{file}.html'])
-    return proc
+    st.write("NPX done!")
+
+    filename = 'file:///'+os.getcwd()+'/' + 'deck.html'
+    webbrowser.open_new_tab(filename)
+    st.write("Opening Browser done!")
+    #subprocess.Popen(['open', f'{file}.html'])
+    #return proc
 
 #####################
 ## Quarto
