@@ -15,13 +15,8 @@ footer: by ChatGPT
 ## Pretty cool, huh?
     
 ---
-## What is Bayes' Rule? 
+## Test 
     
 
-- Bayes Rule states that the probability of an event $A$ given evidence $B$ is:
-  $$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
-  
-- Here, $P(A|B)$ is the **posterior** probability, $P(B|A)$ is the **likelihood**, $P(A)$ is the **prior** probability, and $P(B)$ is the **normalizing constant**.
-  
-- Bayes Rule can be used to update prior beliefs with new evidence.
+**This is an example of formatted text in Markdown.** It is a lightweight markup language that allows you to easily create documents with formatting, such as headings, lists, and links. It is commonly used for creating README files, blog posts, and other documentation.
     
