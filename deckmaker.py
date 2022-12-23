@@ -55,13 +55,15 @@ def markdown2marp(file):
     
     # Open HTML in Browser
     file = file.split(".")[0] # remove .md
-    proc = subprocess.run([marp_it], shell=True, stdout=subprocess.PIPE)
+    proc = subprocess.run([marp_it])#, shell=True, stdout=subprocess.PIPE)
     if proc:
         st.write("Marp done!", proc)
     else:
         st.write("Marp failed!", proc)
     ls = subprocess.run(["ls"],shell=True, stdout=subprocess.PIPE)
     st.write("run ls:", ls)
+    mydir = os.listdir()
+    st.write("OS listdir:", mydir)
 
     #filename = 'file:///'+os.getcwd()+'/' + 'deck.html'
     #webbrowser.open_new_tab(filename)
