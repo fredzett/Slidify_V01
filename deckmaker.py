@@ -60,7 +60,8 @@ def markdown2marp(file):
         st.write("Marp done!", proc)
     else:
         st.write("Marp failed!", proc)
-    subprocess.run(["ls"])
+    ls = subprocess.run(["ls"],shell=True, stdout=subprocess.PIPE)
+    st.write("run ls:", ls)
 
     #filename = 'file:///'+os.getcwd()+'/' + 'deck.html'
     #webbrowser.open_new_tab(filename)
