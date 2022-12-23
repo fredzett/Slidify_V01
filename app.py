@@ -142,7 +142,7 @@ def main_page():
                 with open("deck.html", 'rb') as f:
                     st.download_button(              #second button
                         label="Download presentation",
-                        data=f,
+                        data=f.read(),
                         file_name="deck.html",
                         mime='application/xhtml+xml',
                     )
